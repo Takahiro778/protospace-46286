@@ -1,0 +1,23 @@
+<div class="card">
+  <%# 画像全体を詳細ページへのリンクにする %>
+  <%= link_to prototype_path(prototype) do %>
+    <% if prototype.image.attached? %>
+      <%= image_tag prototype.image, class: "card__img", alt: prototype.title %>
+    <% else %>
+      <%# 画像がない場合のダミーも用意（必要なら） %>
+      <%= image_tag "no-image.png", class: "card__img", alt: "No image" %>
+    <% end %>
+  <% end %>
+
+  <div class="card__body">
+    <%# タイトルも詳細ページへのリンクにする %>
+    <%= link_to prototype.title, prototype_path(prototype), class: "card__title" %>
+
+    <p class="card__summary">
+      <%= prototype.catch_copy %>
+    </p>
+
+    <%# 投稿者名はユーザー詳細ページへのリンクに変更 %>
+    <%= link_to "by #{prototype.user.name}", user_path(prototype.user), class: "card__user" %>
+  </div>
+</div>
